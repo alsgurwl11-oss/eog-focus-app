@@ -358,7 +358,7 @@
     <div class="panel-title">⏱ 측정 타이머</div>
     <div class="timer-box">
       <div id="timerDisplay">01:00</div>
-      <div class="timer-label">1분 미션 후 아래 버튼으로 저장하세요</div>
+      <div class="timer-label">10분 공 후 아래 버튼으로 저장하세요</div>
     </div>
   </div>
 
@@ -480,7 +480,7 @@ let fixationStart  = null;       // 고정 시작 시각
 let fixationDurations = [];      // 고정 지속시간 목록
 let dataRows       = [];         // 저장된 데이터
 let timerInterval  = null;
-let timerSec       = 60;
+let timerSec       = 600;
 const EAR_THRESHOLD  = 0.21;     // 눈 감은 판정 임계값
 const SACC_THRESHOLD = 0.008;    // 시선 이동 판정 임계값
 
@@ -749,7 +749,7 @@ function saveData(label) {
   if (!measureStart) { setMsg('먼저 카메라를 시작하세요', 'err'); return; }
 
   const elapsed = (performance.now() - measureStart) / 60000;
-  if (elapsed < 0.3) { setMsg('⚠️ 최소 30초 이상 측정 후 저장하세요', 'err'); return; }
+  if (elapsed < 5) { setMsg('⚠️ 최소 5분 이상 측정 후 저장하세요', 'err'); return; }
 
   const bpm = elapsed > 0 ? blinkCount / elapsed : 0;
   const avgClose = blinkDurations.length > 0
